@@ -27,15 +27,21 @@ public class BinarySearchTreeDemo {
 
         searchTree.initData(root);
 
-        searchTree.insert(11);
-        searchTree.insert(111);
-        searchTree.insert(711);
-        searchTree.insert(1211);
-        searchTree.insert(2211);
-        searchTree.remove(11);
-        searchTree.remove(711);
-        searchTree.remove(2211);
-        searchTree.remove(500);
+        boolean insert = true;
+        if (insert) {
+            searchTree.insert(11);
+            searchTree.insert(111);
+            searchTree.insert(711);
+            searchTree.insert(1211);
+            searchTree.insert(2211);
+        }
+        boolean remove = true;
+        if (remove) {
+            searchTree.remove(11);
+            searchTree.remove(711);
+            searchTree.remove(2211);
+            searchTree.remove(500);
+        }
 
         searchTree.print();
 
@@ -44,7 +50,6 @@ public class BinarySearchTreeDemo {
         System.out.println("isEmpty:" + searchTree.isEmpty());
         System.out.println("max:" + searchTree.findMax());
         System.out.println("min:" + searchTree.findMin());
-
 
 
     }

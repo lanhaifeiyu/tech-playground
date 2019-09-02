@@ -101,34 +101,25 @@ public class BinarySearchTree<T extends Comparable> {
     }
 
     public void insert(T data) {
-        if (null == root) {
-            root = new BinaryNode<>(data, null, null);
-        }
-        insert(data, root);
+        root = insert(data, root);
     }
 
-    private void insert(T data, BinaryNode<T> node) {
+    private BinaryNode<T> insert(T data, BinaryNode<T> node) {
         if (null == data) {
-            return;
+            return node;
         }
         if (null == node) {
-            return;
+            return new BinaryNode<>(data, null, null);
         }
-        if (node.element.compareTo(data) > 0) {
-            if (null == node.left) {
-                node.left = new BinaryNode<>(data, null, null);
-                return;
-            }
-            insert(data, node.left);
-        } else if (node.element.compareTo(data) < 0) {
-            if (null == node.right) {
-                node.right = new BinaryNode<>(data, null, null);
-                return;
-            }
-            insert(data, node.right);
+        int result = data.compareTo(node.element);
+        if (result > 0) {
+            node.right = insert(data, node.right);
+        } else if (result < 0) {
+            node.left = insert(data, node.left);
         } else {
-            node.element = data;
+            // duplicate, do nothing
         }
+        return node;
     }
 
     public void remove(T data) {
@@ -142,24 +133,17 @@ public class BinarySearchTree<T extends Comparable> {
         if (null == node) {
             return null;
         }
-        if (node.element.compareTo(data) > 0) {
-            node.left = remove(data, node.left);
-        } else if (node.element.compareTo(data) < 0) {
+        int result = data.compareTo(node.element);
+        if (result > 0) {
             node.right = remove(data, node.right);
+        } else if (result < 0) {
+            node.left = remove(data, node.left);
+        } else if (null != node.right && null != node.left) {
+            BinaryNode<T> right_min = findMinNode(node.right);
+            node.element = right_min.element;
+            node.right = remove(right_min.element, right_min.right);
         } else {
-            BinaryNode<T> target_node = node;
-            if (null == target_node.right) {
-                return target_node.left;
-            } else if (null == target_node.left) {
-                return target_node.right;
-            } else {
-                BinaryNode<T> right_min = findMinNode(target_node.right);
-
-                node.right = right_min.right;
-
-                return node;
-            }
-
+            return node.left == null ? node.right : node.left;
         }
 
         return node;
