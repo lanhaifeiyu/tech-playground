@@ -2,6 +2,7 @@ package com.lhfeiyu.tech.java.base;
 
 import org.apache.ibatis.javassist.bytecode.ByteArray;
 
+import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.text.MessageFormat;
 import java.util.Base64;
@@ -29,6 +30,18 @@ public class Base64Demo {
 
         String str = Base64.getEncoder().encodeToString(b);
         System.out.println(str);
+
+        String msg = "5LiN6L+H56m/6LaK"; // 不过穿越
+        try {
+            str = new String(Base64.getDecoder().decode(msg),"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        System.out.println(str);
+
+        String sbstr = "01234567890123456789";
+        System.out.println(sbstr.substring(0,18));
+
 
     }
 
