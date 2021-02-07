@@ -16,15 +16,13 @@ import java.util.Stack;
  * 归并排序（Merging Sort）
  * 基数排序（Radix Sort）
  */
-public class AllSortDemo {
+public class AllSortDemoTemplate {
 
     public static void main(String[] args) {
         int[] data = new int[]{23, 454, 67, 787, 3423, 11, 3, 45, 99, 56, 23456};
-        insertSort1_copy(data);
         //insertSort11(data);
         data = new int[]{23, 454, 67, 787, 3423, 11, 3, 45, 99, 56, 23456};
         //insertSort12(data);
-        insertSort2_copy(data);
         data = new int[]{23, 454, 67, 787, 3423, 11, 3, 45, 99, 56, 23456};
         //shellSort(data);
         data = new int[]{23, 454, 67, 787, 3423, 11, 3, 45, 99, 56, 23456};
@@ -32,62 +30,9 @@ public class AllSortDemo {
         data = new int[]{23, 454, 67, 787, 3423, 11, 3, 45, 99, 56, 23456};
         //quickSort(data);
         data = new int[]{23, 454, 67, 787, 3423, 11, 3, 45, 99, 56, 23456};
-        //quickSort2(data);
+        quickSort2(data);
         data = new int[]{23, 454, 67, 787, 3423, 11, 3, 45, 99, 56, 23456};
-        //selectionSort(data);
-    }
-
-    public static int[] insertSort1_copy(int[] data) {
-        if (null == data || data.length == 0) {
-            return data;
-        }
-        int len = data.length;
-        int times = 0;
-        for (int i = 1; i < len; i++) {
-            int item = data[i];
-            for (int j = i; j > 0; j--) {
-                int pre = data[j-1];
-                // 每轮和前一个比较，通过则互换
-                if (item<pre) {
-                    data[j] = pre;
-                    data[j-1] = item;
-                    times++;
-                } else {
-                    break;
-                }
-            }
-            System.out.println("insertSort1_copy times:" + times + ",data:" + Arrays.toString(data));
-        }
-        System.out.println("insertSort1_copy times:" + times);
-        return data;
-    }
-
-    public static int[] insertSort2_copy(int[] data) {
-        if (null == data || data.length == 0) {
-            return data;
-        }
-        int len = data.length;
-        int times = 0;
-        for (int i = 1; i < len; i++) {
-            int tmp = data[i];// 取出下一个元素，在已经排序的元素序列中从后向前扫描
-            for (int j = i; j >= 0; j--) {
-                if (j > 0 && tmp < data[j - 1]) {
-                    // 如果temp小于上一个元素，则把上个元素移到当前位置
-                    times++;
-                    data[j] = data[j - 1];
-                    System.out.println("insertSort2_copy find times:" + times + ",data:" + Arrays.toString(data));
-                } else {
-                    // 如果temp大于上一个元素，则把temp放到当前位置
-                    times++;
-                    data[j] = tmp;
-                    System.out.println("insertSort2_copy times:" + times + ",data:" + Arrays.toString(data));
-                    break;
-                }
-            }
-
-        }
-        System.out.println("insertSort2_copy times:" + times + ",data:" + Arrays.toString(data));
-        return data;
+        selectionSort(data);
     }
 
     /**

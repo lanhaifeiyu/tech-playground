@@ -1,7 +1,7 @@
 package com.lhfeiyu.tech.framework;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
-import redis.clients.jedis.*;
+//import redis.clients.jedis.*;
 
 /**
  * TODO
@@ -10,7 +10,7 @@ import redis.clients.jedis.*;
  */
 public class RedisDemo {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         //redis_base();
         redis_cluster();
     }
@@ -46,6 +46,6 @@ public class RedisDemo {
         //jedis.auth("vfr47ujm");
         String value = jedis.get("clust1");
         System.out.println(value);
-    }
+    }*/
 
 }

@@ -7,7 +7,6 @@ import io.lettuce.core.cluster.RedisClusterClient;
 import io.lettuce.core.cluster.api.StatefulRedisClusterConnection;
 import io.lettuce.core.cluster.api.sync.NodeSelection;
 import io.lettuce.core.cluster.api.sync.RedisAdvancedClusterCommands;
-import org.assertj.core.api.Assertions;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
