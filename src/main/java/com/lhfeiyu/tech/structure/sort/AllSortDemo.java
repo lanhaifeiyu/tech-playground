@@ -20,17 +20,20 @@ public class AllSortDemo {
 
     public static void main(String[] args) {
         int[] data = new int[]{23, 454, 67, 787, 3423, 11, 3, 45, 99, 56, 23456};
-        insertSort1_copy(data);
+        //insertSort1_copy(data);
         //insertSort11(data);
         data = new int[]{23, 454, 67, 787, 3423, 11, 3, 45, 99, 56, 23456};
         //insertSort12(data);
-        insertSort2_copy(data);
+        //insertSort2_copy(data);
         data = new int[]{23, 454, 67, 787, 3423, 11, 3, 45, 99, 56, 23456};
         //shellSort(data);
+        //shellSort_copy(data);
         data = new int[]{23, 454, 67, 787, 3423, 11, 3, 45, 99, 56, 23456};
         //babelSort(data);
+        //babelSort_copy(data);
         data = new int[]{23, 454, 67, 787, 3423, 11, 3, 45, 99, 56, 23456};
         //quickSort(data);
+        quickSort_copy(data);
         data = new int[]{23, 454, 67, 787, 3423, 11, 3, 45, 99, 56, 23456};
         //quickSort2(data);
         data = new int[]{23, 454, 67, 787, 3423, 11, 3, 45, 99, 56, 23456};
@@ -46,11 +49,11 @@ public class AllSortDemo {
         for (int i = 1; i < len; i++) {
             int item = data[i];
             for (int j = i; j > 0; j--) {
-                int pre = data[j-1];
+                int pre = data[j - 1];
                 // 每轮和前一个比较，通过则互换
-                if (item<pre) {
+                if (item < pre) {
                     data[j] = pre;
-                    data[j-1] = item;
+                    data[j - 1] = item;
                     times++;
                 } else {
                     break;
@@ -87,6 +90,40 @@ public class AllSortDemo {
 
         }
         System.out.println("insertSort2_copy times:" + times + ",data:" + Arrays.toString(data));
+        return data;
+    }
+
+    public static int[] shellSort_copy(int[] data) {
+        int gap = data.length / 2;
+        for (; gap > 0; gap /= 2) {
+            for (int i = 0; (i + gap) < data.length; i++) {
+                for (int j = i; j + gap < data.length; j += gap) {
+                    if (data[j] > data[j + gap]) {
+                        int temp = data[j + gap];
+                        data[j + gap] = data[j];
+                        data[j] = temp;
+                    }
+
+                }
+            }
+        }
+        System.out.println(Arrays.toString(data));
+        return data;
+    }
+
+    public static int[] babelSort_copy(int[] data) {
+
+        for (int i = data.length - 1; i >= 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (data[j] > data[j + 1]) {
+                    int tmp = data[j];
+                    data[j] = data[j + 1];
+                    data[j + 1] = tmp;
+                }
+            }
+
+        }
+        System.out.println(Arrays.toString(data));
         return data;
     }
 
@@ -200,6 +237,38 @@ public class AllSortDemo {
         System.out.println(Arrays.toString(data));
 
     }*/
+
+    /**
+     * https://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html
+     * https://itimetraveler.github.io/2017/07/18/%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E4%B8%8Ejava%E5%AE%9E%E7%8E%B0/?utm_source=juhe&utm_source=juhe#%E5%85%AD%E3%80%81%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88Quick-Sort%EF%BC%89
+     * @param data
+     */
+    public static void quickSort_copy(int[] data){
+        quickSort(data, 0, data.length - 1);
+        System.out.println("quickSort:" + Arrays.toString(data));
+    }
+
+    public static void quickSort_copy(int[] data, int low, int high){
+        int left = low;
+        int right = high;
+        int pivot = data[left];
+        while (left < right){
+            while(left < right && data[right]>pivot){
+                right--;
+            }
+            data[left] = data[right];
+            while (left < right && data[left]<pivot){
+                left++;
+            }
+            data[right] = data[left];
+        }
+
+        data[left] = pivot;
+        quickSort_copy(data, low, left-1);
+        quickSort_copy(data, left+1, high);
+    }
+
+
 
     public static void quickSort(int[] data) {
         quickSort(data, 0, data.length - 1);
