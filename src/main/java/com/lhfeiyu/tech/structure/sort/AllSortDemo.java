@@ -387,5 +387,21 @@ public class AllSortDemo {
     }*/
 
 
+    public static void heapSort(int[] data) {
+
+    }
+
+    public static void mergingSort(int[] data) {
+
+    }
+
+    public static void radixSort(int[] data) {
+
+    }
+
+    public static void bucketSort(int[] data) {
+
+    }
+
 }
 
