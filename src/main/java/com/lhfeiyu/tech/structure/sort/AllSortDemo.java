@@ -241,33 +241,62 @@ public class AllSortDemo {
     /**
      * https://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html
      * https://itimetraveler.github.io/2017/07/18/%E5%85%AB%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E4%B8%8Ejava%E5%AE%9E%E7%8E%B0/?utm_source=juhe&utm_source=juhe#%E5%85%AD%E3%80%81%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88Quick-Sort%EF%BC%89
+     *
      * @param data
      */
-    public static void quickSort_copy(int[] data){
-        quickSort(data, 0, data.length - 1);
-        System.out.println("quickSort:" + Arrays.toString(data));
+    public static void quickSort_copy(int[] data) {
+        quickSort_copy(data, 0, data.length - 1);
+        System.out.println(Arrays.toString(data));
     }
 
-    public static void quickSort_copy(int[] data, int low, int high){
+    public static void quickSort_copy(int[] data, int low, int high) {
+        if (data.length <= 0) {
+            return;
+        }
+        if (low >= high) {
+            return;
+        }
         int left = low;
         int right = high;
         int pivot = data[left];
-        while (left < right){
-            while(left < right && data[right]>pivot){
+        while (left < right) {
+            while (left < right && data[right] >= pivot) {
                 right--;
             }
             data[left] = data[right];
-            while (left < right && data[left]<pivot){
+            while (left < right && data[left] <= pivot) {
                 left++;
             }
             data[right] = data[left];
         }
-
         data[left] = pivot;
-        quickSort_copy(data, low, left-1);
-        quickSort_copy(data, left+1, high);
-    }
+        quickSort_copy(data, low, left - 1);
+        quickSort_copy(data, left + 1, high);
 
+
+        /*if (data.length <= 0) {
+            return;
+        }
+        if (low >= high) {
+            return;
+        }
+        int left = low;
+        int right = high;
+        int pivot = data[left];
+        while (left < right) {
+            while (left < right && data[right] >= pivot) {
+                right--;
+            }
+            data[left] = data[right];
+            while (left < right && data[left] <= pivot) {
+                left++;
+            }
+            data[right] = data[left];
+        }
+        data[left] = pivot;
+        quickSort_copy(data, 0, left - 1);
+        quickSort_copy(data, left + 1, high);*/
+    }
 
 
     public static void quickSort(int[] data) {

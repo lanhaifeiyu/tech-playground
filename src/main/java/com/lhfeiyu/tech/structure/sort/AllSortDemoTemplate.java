@@ -151,6 +151,49 @@ public class AllSortDemoTemplate {
         System.out.println("quickSort:" + Arrays.toString(data));
     }
 
+    public void quickSortCopy(int[] data) {
+        quickSortCopy(data, 0, data.length - 1);
+    }
+
+    public void quickSortCopy(int[] data, int low, int high) {
+        if (data.length <= 0) {
+            return;
+        }
+        if (low >= high) {
+            return;
+        }
+        int left = low;
+        int right = high;
+        int pivot = data[left];
+        while (left < right) {
+            while (left < right && data[right] >= pivot) {
+                right--;
+            }
+            data[left] = data[right];
+            while (left < right && data[left] <= pivot) {
+                left++;
+            }
+            data[right] = data[left];
+        }
+        data[left] = pivot;
+        quickSortCopy(data, low, left - 1);
+        quickSortCopy(data, left + 1, high);
+    }
+
+    public void babelSortCopy(int[] data) {
+        int len = data.length;
+        for (int i = len - 1; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (data[j] > data[j + 1]) {
+                    int tmp = data[j];
+                    data[j] = data[j + 1];
+                    data[j + 1] = tmp;
+                }
+            }
+
+        }
+    }
+
     public static void quickSort(int[] data, int low, int high) {
         if (data.length <= 0) {
             return;
